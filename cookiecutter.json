@@ -1,0 +1,9 @@
+{
+    "api_name": "my-api",
+    "dynamodb_table_name": "my-api-table",
+    "domain_name": "moggies.io",
+    "aws_account_id": "000000000000",
+    "aws_region": "eu-west-1",
+    "use_authorization": ["yes", "no"],
+    "aws_cognito_user_pool_id": "..."
+}
