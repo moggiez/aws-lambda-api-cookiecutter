@@ -1,4 +1,4 @@
-TF_BACKEND_CFG=-backend-config="bucket=moggies.io-terraform-state-backend" -backend-config="dynamodb_table=moggies.io-playbooks-api-terraform_state" -backend-config="key=playbooks-api-terraform.state" -backend-config="region=eu-west-1"
+TF_BACKEND_CFG=-backend-config="bucket=moggies.io-terraform-state-backend" -backend-config="dynamodb_table=moggies.io-{{cookiecutter.api_name}}-terraform_state" -backend-config="key={{cookiecutter.api_name}}-terraform.state" -backend-config="region={{cookiecutter.aws_region}}"
 
 # INFRASTRUCTURE
 modules-cleanup:
@@ -21,13 +21,13 @@ infra-preview: modules-cleanup
 
 # CODE
 build-cleanup:
-	rm -rf ./dist/* & mkdir -p dist
+	rm -rf ./dist/* & mkdir -p dist && rm -rf ./src/node_modules
 
 build: build-cleanup
-	cd src && npm i && zip -r ../dist/playbooks-api.zip ./
+	cd src && npm i --only=prod && zip -r ../dist/{{cookiecutter.api_name}}.zip ./
 
 build-dev: build-cleanup
-	cd src && npm i --only=prod
+	cd src && npm i
 
 lint:
 	cd src && npm run lint
@@ -43,4 +43,4 @@ update-lambda-fn:
 
 # NPM COMMANDS
 npm-auth:
-	aws codeartifact login --tool npm --repository team-npm --domain moggies-io --domain-owner 989665778089
+	aws codeartifact login --tool npm --repository team-npm --domain moggies-io --domain-owner {{cookiecutter.aws_account_id}}

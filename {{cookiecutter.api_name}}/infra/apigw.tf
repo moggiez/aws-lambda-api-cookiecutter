@@ -9,7 +9,7 @@ module "first_param" {
 {% endif %}
 }
 
-module "orgId_gateway_cors" {
+module "first_param_cors" {
   source          = "git@github.com:moggiez/terraform-modules.git//api_gateway_enable_cors"
   api_id          = aws_api_gateway_rest_api._.id
   api_resource_id = module.first_param.api_resource.id
@@ -27,7 +27,7 @@ module "fixed_part" {
 {% endif %}
 }
 
-module "playbooks_gateway_cors" {
+module "fixed_param_cors" {
   source          = "git@github.com:moggiez/terraform-modules.git//api_gateway_enable_cors"
   api_id          = aws_api_gateway_rest_api._.id
   api_resource_id = module.fixed_part.api_resource.id
@@ -45,7 +45,7 @@ module "second_param" {
 {% endif %}
 }
 
-module "playbookId_gateway_cors" {
+module "second_param_cors" {
   source          = "git@github.com:moggiez/terraform-modules.git//api_gateway_enable_cors"
   api_id          = aws_api_gateway_rest_api._.id
   api_resource_id = module.second_param.api_resource.id

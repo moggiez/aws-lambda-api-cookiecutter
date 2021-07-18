@@ -9,7 +9,7 @@ terraform {
   #   bucket         = "{{cookiecutter.domain_name}}-terraform-state-backend"
   #   key            = "{{cookiecutter.api_name}}-terraform.state"
   #   region         = "eu-west-1"
-  #   dynamodb_table = "{{cookiecutter.domain_name}}-{{cookiecutter.api_name}-terraform_state"
+  #   dynamodb_table = "{{cookiecutter.domain_name}}-{{cookiecutter.api_name}}-terraform_state"
   # }
 }
 
@@ -52,7 +52,7 @@ locals {
 
 resource "aws_api_gateway_rest_api" "_" {
   name        = "{{cookiecutter.api_name}}"
-  description = "{{cookiecutter.api_name}} API for managing playbooks and customer data"
+  description = "{{cookiecutter.api_name}} API"
 }
 
 {%- if cookiecutter.use_authorization == "yes" -%}

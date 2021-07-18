@@ -9,7 +9,7 @@ resource "aws_acm_certificate" "_" {
   }
 
   tags = {
-    Name = "playbook-api SSL certificate"
+    Name = "{{cookiecutter.api_name}} SSL certificate"
   }
 }
 
