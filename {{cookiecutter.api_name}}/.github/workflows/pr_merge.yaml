@@ -1,3 +1,4 @@
+{% raw %}
 name: "Pull Request"
 
 on:
@@ -122,3 +123,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_DEFAULT_REGION: "eu-west-1"
+{% endraw %}
