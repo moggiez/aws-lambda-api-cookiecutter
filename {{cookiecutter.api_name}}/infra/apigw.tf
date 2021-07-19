@@ -4,7 +4,7 @@ module "first_param" {
   lambda             = module.api_lambda.lambda
   http_methods       = local.http_methods
   resource_path_part = "{first_param}"
-{%- if cookiecutter.use_authorization == "yes" -%}
+{% if cookiecutter.use_authorization == "yes" %}
   authorizer         = local.authorizer
 {% endif %}
 }
@@ -22,7 +22,7 @@ module "fixed_part" {
   lambda             = module.api_lambda.lambda
   http_methods       = local.http_methods
   resource_path_part = "fixed_part"
-{%- if cookiecutter.use_authorization == "yes" -%}
+{% if cookiecutter.use_authorization == "yes" %}
   authorizer         = local.authorizer
 {% endif %}
 }
@@ -40,7 +40,7 @@ module "second_param" {
   lambda             = module.api_lambda.lambda
   http_methods       = local.http_methods
   resource_path_part = "{second_param}"
-{%- if cookiecutter.use_authorization == "yes" -%}
+{% if cookiecutter.use_authorization == "yes" %}
   authorizer         = local.authorizer
 {% endif %}
 }

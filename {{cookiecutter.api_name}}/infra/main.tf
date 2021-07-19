@@ -31,7 +31,7 @@ locals {
   environment = "PROD"
 
   hosted_zone           = data.aws_route53_zone.public
-{%- if cookiecutter.use_authorization == "yes" -%}
+{% if cookiecutter.use_authorization == "yes" %}
   authorization_enabled = true
 {% endif %}
 
@@ -41,7 +41,7 @@ locals {
   http_methods = toset(["GET", "POST", "PUT", "DELETE"])
 }
 
-{%- if cookiecutter.use_authorization == "yes" -%}
+{% if cookiecutter.use_authorization == "yes" %}
 locals {
   authorizer = local.authorization_enabled ? aws_api_gateway_authorizer._ : null
 }
@@ -52,7 +52,7 @@ resource "aws_api_gateway_rest_api" "_" {
   description = "{{cookiecutter.api_name}} API"
 }
 
-{%- if cookiecutter.use_authorization == "yes" -%}
+{% if cookiecutter.use_authorization == "yes" %}
 resource "aws_api_gateway_authorizer" "_" {
   name          = "{{cookiecutter.api_name}}-UserAuthorizer"
   rest_api_id   = aws_api_gateway_rest_api._.id

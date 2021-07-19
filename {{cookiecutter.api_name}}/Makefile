@@ -19,6 +19,9 @@ infra-deploy: modules-cleanup
 infra-preview: modules-cleanup
 	cd infra && terraform init && terraform plan
 
+infra-destroy:
+	cd infra && terraform init && terraform destroy
+
 # CODE
 build-cleanup:
 	rm -rf ./dist/* & mkdir -p dist && rm -rf ./src/node_modules
@@ -30,13 +33,13 @@ build-dev: build-cleanup
 	cd src && npm i
 
 lint:
-	cd src && npm run lint
+	npm run lint
 
 format:
-	cd src && npm run format
+	npm run format
 
 test:
-	cd src && npm run test
+	npm run test
 
 update-lambda-fn:
 	aws lambda update-function-code --function-name {{cookiecutter.api_name}} --zip-file fileb://$(shell pwd)/dist/{{cookiecutter.api_name}}.zip --publish | jq .FunctionArn
