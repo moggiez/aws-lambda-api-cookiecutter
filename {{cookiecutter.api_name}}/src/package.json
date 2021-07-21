@@ -19,6 +19,9 @@
     "format": "prettier --write ."
   },
   "jest": {
+    "testMatch": [
+      "<rootDir>/**/__tests__/*.test.js"
+    ],
     "testPathIgnorePatterns": [
       "__tests__/helpers.js"
     ]
