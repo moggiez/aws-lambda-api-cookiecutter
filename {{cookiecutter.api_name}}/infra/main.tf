@@ -5,12 +5,8 @@ terraform {
     }
   }
 
-  # backend "s3" {
-  #   bucket         = "{{cookiecutter.domain_name}}-terraform-state-backend"
-  #   key            = "{{cookiecutter.api_name}}-terraform.state"
-  #   region         = "eu-west-1"
-  #   dynamodb_table = "{{cookiecutter.domain_name}}-{{cookiecutter.api_name}}-terraform_state"
-  # }
+  # Uncomment the line below to switch from local to s3 terraform backend
+  # backend "s3" {}
 }
 
 provider "aws" {
@@ -30,7 +26,7 @@ data "aws_route53_zone" "public" {
 locals {
   environment = "PROD"
 
-  hosted_zone           = data.aws_route53_zone.public
+  hosted_zone = data.aws_route53_zone.public
 {% if cookiecutter.use_authorization == "yes" %}
   authorization_enabled = true
 {% endif %}

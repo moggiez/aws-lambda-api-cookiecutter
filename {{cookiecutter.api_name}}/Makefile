@@ -1,5 +1,3 @@
-TF_BACKEND_CFG=-backend-config="bucket=moggies.io-terraform-state-backend" -backend-config="dynamodb_table=moggies.io-{{cookiecutter.api_name}}-terraform_state" -backend-config="key={{cookiecutter.api_name}}-terraform.state" -backend-config="region={{cookiecutter.aws_region}}"
-
 # INFRASTRUCTURE
 modules-cleanup:
 	cd infra && rm -rf .terraform/modules
@@ -8,7 +6,7 @@ infra-fmt:
 	cd infra && terraform fmt -recursive
 
 infra-init:
-	cd infra && terraform init -force-copy ${TF_BACKEND_CFG}
+	cd infra && terraform init -force-copy -backend-config=./tf_backend.cfg
 
 infra-debug:
 	cd infra && TF_LOG=DEBUG terraform apply -auto-approve infra

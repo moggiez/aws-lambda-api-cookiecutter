@@ -53,7 +53,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: 14
+          registry-url: https://npm.pkg.github.com/
+          scope: "@moggiez"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -63,10 +65,12 @@ jobs:
           aws-region: eu-west-1
 
       - name: Login to NPM
-        run: make npm-auth
+        run: token=${{ secrets.GH_PAT_NPM }} make npm-auth
 
       - name: Build lambdas
         run: make build
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GH_PAT_NPM}}
 
       # Builds lambda packages and generates an execution plan for Terraform
       - name: Preview deployment
