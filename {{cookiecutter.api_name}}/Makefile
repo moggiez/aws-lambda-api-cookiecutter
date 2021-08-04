@@ -46,4 +46,4 @@ update-lambda-fn:
 
 # NPM COMMANDS
 npm-auth:
-	aws codeartifact login --tool npm --repository team-npm --domain moggies-io --domain-owner {{cookiecutter.aws_account_id}}
+	./scripts/npm_auth.sh
