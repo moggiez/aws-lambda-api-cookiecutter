@@ -4,7 +4,8 @@
   "private": true,
   "keywords": [],
   "dependencies": {
-    "uuid": "^8.3.2"
+    "@moggiez/moggies-auth": "^0.2.0",
+    "@moggiez/moggies-lambda-helpers": "^0.2.0"
   },
   "devDependencies": {
     "jest": "^27.0.5",

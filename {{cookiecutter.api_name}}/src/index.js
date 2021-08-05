@@ -1,17 +1,18 @@
 "use strict";
 const AWS = require("aws-sdk");
 
-const db = require("moggies-db");
-const helpers = require("moggies-lambda-helpers");
-const auth = require("moggies-auth");
+const helpers = require("@moggiez/moggies-lambda-helpers");
+const auth = require("@moggiez/moggies-auth");
 
-const { Handler } = require("./handler");
-
-const DEBUG = false;
+const DEBUG = true;
 
 const debug = (event, response) => {
+  const body = {
+    response: "Hello from {{cookiecutter.dynamodb_table_name}}!",
+    request: event
+  }
   if (DEBUG) {
-    response(200, event);
+    response(200, body);
   }
 };
 
@@ -26,12 +27,4 @@ const getRequest = (event) => {
 exports.handler = function (event, context, callback) {
   const response = helpers.getResponseFn(callback);
   debug(event, response);
-
-  const table = new db.Table({
-    config: db.tableConfigs.{{cookiecutter.dynamodb_table_name}},
-    AWS: AWS,
-  });
-  const handler = new Handler(table);
-
-  handler.handle(getRequest(event), response);
 };
