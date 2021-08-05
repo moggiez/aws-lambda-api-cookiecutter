@@ -9,7 +9,7 @@ const DEBUG = true;
 const debug = (event, response) => {
   const body = {
     response: "Hello from {{cookiecutter.dynamodb_table_name}}!",
-    request: event
+    request: getRequest(event)
   }
   if (DEBUG) {
     response(200, body);
