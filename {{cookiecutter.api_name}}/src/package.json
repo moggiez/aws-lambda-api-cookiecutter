@@ -5,6 +5,7 @@
   "keywords": [],
   "dependencies": {
     "@moggiez/moggies-auth": "^0.2.0",
+    "@moggiez/moggies-db": "^0.2.0",
     "@moggiez/moggies-lambda-helpers": "^0.2.0"
   },
   "devDependencies": {

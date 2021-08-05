@@ -8,16 +8,16 @@ infra-fmt:
 infra-init:
 	cd infra && terraform init -force-copy -backend-config=./tf_backend.cfg
 
-infra-debug:
+infra-debug: infra-init
 	cd infra && TF_LOG=DEBUG terraform apply -auto-approve infra
 
-infra-deploy: modules-cleanup
+infra-deploy: modules-cleanup infra-init
 	cd infra && terraform init && terraform apply -auto-approve
 
-infra-preview: modules-cleanup
+infra-preview: modules-cleanup infra-init
 	cd infra && terraform init && terraform plan
 
-infra-destroy:
+infra-destroy: infra-init
 	cd infra && terraform init && terraform destroy
 
 # CODE
@@ -39,7 +39,7 @@ format:
 test:
 	npm run test
 
-update-lambda-fn:
+update-lambda-fn: build
 	aws lambda update-function-code --function-name {{cookiecutter.api_name}} --zip-file fileb://$(shell pwd)/dist/{{cookiecutter.api_name}}.zip --publish | jq .FunctionArn
 
 # NPM COMMANDS

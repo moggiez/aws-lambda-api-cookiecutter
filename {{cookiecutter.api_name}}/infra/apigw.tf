@@ -3,7 +3,7 @@ module "first_param" {
   api                = aws_api_gateway_rest_api._
   lambda             = module.api_lambda.lambda
   http_methods       = local.http_methods
-  resource_path_part = "{first_param}"
+  resource_path_part = "{hk}"
 {% if cookiecutter.use_authorization == "yes" %}
   authorizer         = local.authorizer
 {% endif %}
@@ -39,7 +39,7 @@ module "second_param" {
   parent_resource    = module.fixed_part.api_resource
   lambda             = module.api_lambda.lambda
   http_methods       = local.http_methods
-  resource_path_part = "{second_param}"
+  resource_path_part = "{sk}"
 {% if cookiecutter.use_authorization == "yes" %}
   authorizer         = local.authorizer
 {% endif %}
