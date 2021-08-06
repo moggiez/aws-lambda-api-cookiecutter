@@ -1,3 +1,4 @@
+// Route /{hk}
 module "first_param" {
   source             = "git@github.com:moggiez/terraform-modules.git//lambda_gateway"
   api                = aws_api_gateway_rest_api._
@@ -15,6 +16,7 @@ module "first_param_cors" {
   api_resource_id = module.first_param.api_resource.id
 }
 
+// Route /{hk}/fixed_part
 module "fixed_part" {
   source             = "git@github.com:moggiez/terraform-modules.git//lambda_gateway"
   api                = aws_api_gateway_rest_api._
@@ -33,6 +35,7 @@ module "fixed_param_cors" {
   api_resource_id = module.fixed_part.api_resource.id
 }
 
+// Route /{hk}/fixed_part/{sk}
 module "second_param" {
   source             = "git@github.com:moggiez/terraform-modules.git//lambda_gateway"
   api                = aws_api_gateway_rest_api._
