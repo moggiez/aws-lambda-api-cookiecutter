@@ -8,13 +8,13 @@ infra-fmt:
 infra-init:
 	cd infra && terraform init -force-copy -backend-config=./tf_backend.cfg
 
-infra-debug: infra-init
+infra-debug: build modules-cleanup infra-init
 	cd infra && TF_LOG=DEBUG terraform apply -auto-approve infra
 
-infra-deploy: modules-cleanup infra-init
+infra-deploy: build modules-cleanup infra-init
 	cd infra && terraform init && terraform apply -auto-approve
 
-infra-preview: modules-cleanup infra-init
+infra-preview: build modules-cleanup infra-init
 	cd infra && terraform init && terraform plan
 
 infra-destroy: infra-init
@@ -43,5 +43,8 @@ update-lambda-fn: build
 	aws lambda update-function-code --function-name {{cookiecutter.api_name}} --zip-file fileb://$(shell pwd)/dist/{{cookiecutter.api_name}}.zip --publish | jq .FunctionArn
 
 # NPM COMMANDS
+install:
+	npm i && cd src && npm i
+
 npm-auth:
 	./scripts/npm_auth.sh
